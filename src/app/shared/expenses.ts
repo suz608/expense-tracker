@@ -26,7 +26,6 @@ export class ExpenseService implements OnDestroy {
       const newExpenses = JSON.parse(event.newValue as string);
       if (newExpenses) {
         this.expenses = newExpenses;
-        console.log('Expenses updated from localStorage:', this.expenses);
       }
     });
   }
@@ -66,7 +65,6 @@ export class ExpenseService implements OnDestroy {
 
       if (expensesInStorage) {
         this.expenses = JSON.parse(expensesInStorage);
-        console.log('Expenses loaded from localStorage:', this.expenses);
       } else {
         console.log('No expenses found in localStorage.');
       }

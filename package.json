@@ -1,5 +1,5 @@
 {
-  "name": "finance-tracker",
+  "name": "expense-tracker",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

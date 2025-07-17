@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "finance-tracker": {
+    "expense-tracker": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -30,8 +30,6 @@
               }
             ],
             "styles": [
-              "node_modules/ag-grid-community/styles/ag-grid.css",
-              "node_modules/ag-grid-community/styles/ag-theme-balham.css",
               "src/styles.scss"
             ]
           },
@@ -40,8 +38,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "2MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -63,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "finance-tracker:build:production"
+              "buildTarget": "expense-tracker:build:production"
             },
             "development": {
-              "buildTarget": "finance-tracker:build:development"
+              "buildTarget": "expense-tracker:build:development"
             }
           },
           "defaultConfiguration": "development"

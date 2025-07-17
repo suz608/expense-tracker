@@ -5,8 +5,22 @@
   flex-direction: column;
 }
 
+.top-section{
+  text-align: center;
+  h1{
+    font-size: 90px;
+    font-weight: 600;
+  }
+
+  h2{
+    font-size: 30px;
+    font-weight: 500;
+  }
+}
+
 .icons{
-  gap:30px;
+  margin: 50px;
+  gap:50px;
   display: flex;
   flex-direction: row;
 }

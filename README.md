@@ -1,6 +1,6 @@
-# Finance Tracker
+# Expense Tracker
 
-This is simple **Finance Tracker** application built with **Angular V20**, **D3.js** for charting, **AG-Grid** for displaying expenses in a table format, and **Angular Material** to provide modern, responsive UI components.
+This is simple **Expense Tracker** application built with **Angular V20**, **D3.js** for charting, **AG-Grid** for displaying expenses in a table format, and **Angular Material** to provide modern, responsive UI components.
 
 ---
 
@@ -8,7 +8,7 @@ This is simple **Finance Tracker** application built with **Angular V20**, **D3.
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Setup](#setup)
-- [Screenshots](#screenshots)
+- [Docker setup](#docker-setup)
 - [License](#license)
 
 ---
@@ -40,7 +40,7 @@ To get started, make sure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/expense-tracker.git
+git clone https://github.com/suz608/expense-tracker.git
 cd expense-tracker
 ```
 ### 2. Install Dependencies
@@ -65,11 +65,35 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Docker Setup
+Follow these steps to build and run the app in a Docker container.
+### 1. Build the Docker Image
+From the root of the project, where your Dockerfile is located, run the following command:
+```bash
+docker build -t expense-tracker .
+```
+### 2. Run the Docker Container
+After the image is successfully built, you can run the container with:
+```bash
+docker run -p 8080:80 expense-tracker
+```
+This will run the application in the container and map the container’s port 80 to your local port 8080.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
+Now, you should be able to access the app in your browser at http://localhost:8080.
+### 3. Clean Up Docker Containers and Images (Optional)
+If you need to remove the container or image, you can use the following commands:
+Stop the container:
+```bash
+docker stop <container-id>
+```
+Remove the container:
+```bash
+docker rm <container-id>
+```
+Remove the image:
+```bash
+docker rmi expense-tracker
+```
 
 ## License
 This project is licensed under the MIT License.
