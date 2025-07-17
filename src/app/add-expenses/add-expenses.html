@@ -1,0 +1,39 @@
+<div class="add-expenses">
+
+  <!-- Home Button -->
+  <a routerLink="/" aria-label="Back to Home">
+    <mat-icon class="icon" fontIcon="home"></mat-icon>
+  </a>
+
+  <h2>Add New Expense</h2>
+
+  <!-- Expense Form -->
+  <form class="expense-form" (ngSubmit)="onSubmit()" #expenseForm="ngForm">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" [(ngModel)]="expense.category" name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input
+        id="amount"
+        type="number"
+        [(ngModel)]="expense.amount"
+        name="amount"
+        placeholder="Enter amount"
+        required
+        min="0"
+      />
+    </div>
+
+    <button type="submit" [disabled]="!expenseForm.valid">Save Expense</button>
+  </form>
+
+  <div *ngIf="isSaved" class="confirmation">
+    <p>Expense saved successfully!</p>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="home-wrapper">
+
+  <div class="dt-section">
+    <h1>{{ currentTime| date:'HH:mm' }}</h1>
+    <h2>{{ currentTime | date:'d MMMM y' }}</h2>
+  </div>
+
+  <div class="icons">
+    <a routerLink="/expenses/add" aria-label="Add new expense">
+      <mat-icon class="icon" fontIcon="add"></mat-icon>
+    </a>
+
+    <a routerLink="/pie-chart" aria-label="Pie chart">
+      <mat-icon class="icon" fontIcon="pie_chart"></mat-icon>
+    </a>
+
+    <a routerLink="/expenses" aria-label="Expenses">
+      <mat-icon class="icon" fontIcon="table_chart"></mat-icon>
+    </a>
+  </div>
+
+</div>

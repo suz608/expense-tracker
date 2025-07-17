@@ -1,0 +1,12 @@
+.home-wrapper{
+  margin:auto;
+  place-items:center;
+  display:flex;
+  flex-direction: column;
+}
+
+.icons{
+  gap:30px;
+  display: flex;
+  flex-direction: row;
+}
