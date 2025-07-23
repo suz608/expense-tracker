@@ -1,48 +1,32 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Expense } from './expense.model';
-import { Observable, Subscription, fromEvent, filter, map } from 'rxjs';
+import { environment } from '../../environments/environment.development';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExpenseService implements OnDestroy {
+export class ExpenseService{
   expenses: Expense[] = [];
+  private apiUrl = environment.apiUrl;  // Fetch API URL from the environment file
 
-  // Explicitly type the storage event observable
-  private storageEvent$: Observable<StorageEvent>;
-  private storageEventSubscription!: Subscription;
+  constructor(private http: HttpClient) {
+    // Fetch expenses from the API when the service is created
+    this.fetchExpensesFromApi();
+  }
 
-  constructor() {
-    this.loadState();
-
-    // Define the observable for listening to storage events
-    this.storageEvent$ = fromEvent<StorageEvent>(window, 'storage').pipe(
-      filter(event => event.key === 'expenses'), // Filter for 'expenses' key
-      filter(event => event.newValue !== null)   // Ensure there's a new value in localStorage
-    );
-
-    // Subscribe to the storage event observable
-    this.storageEventSubscription = this.storageEvent$.subscribe(event => {
-      const newExpenses = JSON.parse(event.newValue as string);
-      if (newExpenses) {
-        this.expenses = newExpenses;
+  // Fetch expenses from the AWS API
+  fetchExpensesFromApi() {
+    this.http.get<Expense[]>(this.apiUrl).subscribe({
+      next: (data) => {
+        // Map the fetched data to ensure it fits the Expense model
+        this.expenses = data;
+      },
+      error: (err) => {
+        console.error('Error fetching expenses from API:', err);
       }
     });
-  }
-
-  // Observable method to listen for changes in localStorage
-  getAppDataChanges(): Observable<any> {
-    return this.storageEvent$.pipe(
-      map(event => JSON.parse(event.newValue as string)) // Parse the new value
-    );
-  }
-
-  // Cleanup when the service is destroyed
-  ngOnDestroy() {
-    // Unsubscribe to avoid memory leaks
-    if (this.storageEventSubscription) {
-      this.storageEventSubscription.unsubscribe();
-    }
   }
 
   // Other methods to manage expenses
@@ -51,26 +35,7 @@ export class ExpenseService implements OnDestroy {
   }
 
   addExpense(expense: Expense) {
-    this.expenses.push(expense);
-    this.saveState();
+    //return this.expenses;
   }
 
-  saveState() {
-    localStorage.setItem('expenses', JSON.stringify(this.expenses));
-  }
-
-  loadState() {
-    try {
-      const expensesInStorage = localStorage.getItem('expenses');
-
-      if (expensesInStorage) {
-        this.expenses = JSON.parse(expensesInStorage);
-      } else {
-        console.log('No expenses found in localStorage.');
-      }
-
-    } catch (e) {
-      console.error('There was an error retrieving the expenses from localStorage:', e);
-    }
-  }
 }

@@ -1,6 +1,7 @@
 import {
   getDOM
-} from "./chunk-OIXPBN3I.js";
+} from "./chunk-LIJCOWM3.js";
+import "./chunk-RTPSSVGP.js";
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -21,14 +22,18 @@ import {
   RuntimeError,
   Self,
   SkipSelf,
+  Subject,
   Version,
   afterNextRender,
   booleanAttribute,
   computed,
+  forkJoin,
   forwardRef,
+  from,
   inject,
   isPromise,
   isSubscribable,
+  map,
   setClassMetadata,
   signal,
   untracked,
@@ -44,13 +49,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵlistener
-} from "./chunk-PEVCOXPQ.js";
-import {
-  Subject,
-  forkJoin,
-  from,
-  map
-} from "./chunk-3KKC7HMJ.js";
+} from "./chunk-XB2EIAKZ.js";
 import {
   __spreadProps,
   __spreadValues

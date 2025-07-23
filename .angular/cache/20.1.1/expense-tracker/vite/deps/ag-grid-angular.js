@@ -30,8 +30,7 @@ import {
   ɵɵdirectiveInject,
   ɵɵgetInheritedFactory,
   ɵɵinject
-} from "./chunk-PEVCOXPQ.js";
-import "./chunk-3KKC7HMJ.js";
+} from "./chunk-XB2EIAKZ.js";
 import "./chunk-BJWEDLTQ.js";
 
 // node_modules/ag-grid-angular/fesm2022/ag-grid-angular.mjs

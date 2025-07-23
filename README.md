@@ -8,7 +8,8 @@ This is simple **Expense Tracker** application built with **Angular V20**, **D3.
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [Setup](#setup)
-- [Docker setup](#docker-setup)
+- [Data Storage Options](#data-storage-options)
+- [Docker Setup](#docker-setup)
 - [License](#license)
 
 ---
@@ -19,6 +20,10 @@ This is simple **Expense Tracker** application built with **Angular V20**, **D3.
 - **D3.js**: A powerful charting library used to create dynamic, interactive visualizations. In this project, it's used for rendering a pie chart based on categorized expenses.
 - **AG-Grid**: A highly customizable grid used to display expenses in a tabular format. AG-Grid helps users interact with their data efficiently, supporting features like pagination, sorting, and filtering.
 - **Angular Material**: A set of UI components based on Material Design principles, used to enhance the application's look and feel with modern, responsive components such as buttons, icons, and grids.
+- **Cloud Services**:
+  - **AWS Lambda**: Serverless compute service for running backend code.
+  - **AWS API Gateway**: Managed API service to expose RESTful APIs to frontend clients.
+  - **AWS DynamoDB**: Managed NoSQL database service for storing and retrieving data at scale.
 
 ---
 
@@ -27,7 +32,7 @@ This is simple **Expense Tracker** application built with **Angular V20**, **D3.
 - **Expense Grid**: Displays a table of expenses with columns for date, amount, and category.
 - **Pie Chart**: A dynamic D3.js pie chart visualizing the total expenses per category (e.g., Food, Housing, Health, etc.).
 - **LocalStorage Sync**: All expenses are saved to and loaded from `localStorage`, allowing persistence across sessions. The app listens for `storage` events and updates the grid and chart accordingly.
-- **Responsive Design**: The app is fully responsive, leveraging Angular Material and CSS Flexbox to ensure it looks good on both desktop and mobile devices.
+- **Responsive Design**: The app is fully responsive, leveraging Angular Material and SASS to ensure it looks good on both desktop and mobile devices.
 
 ---
 
@@ -54,6 +59,18 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Data Storage Options
+Two data storage options are available: **Local Storage** or **AWS DynamoDB**.
+- For Local Storage: Replace the import statement `import { ExpenseService } from '../shared/expenses';` with `import { ExpenseLocalService } from '../shared/expenses-local';` in all relevant files.
+- For AWS DynamoDB: Create a new file at `./src/environments/environment.ts` and add the following configuration:
+
+```bash
+export const environment = {
+  production: true,
+  apiUrl: '<DynamoDB-API-URL>',
+};
+```
 
 ### 4. Build the Application
 
