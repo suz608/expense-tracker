@@ -31,7 +31,9 @@ This is simple **Expense Tracker** application built with **Angular V20**, **D3.
 
 - **Expense Grid**: Displays a table of expenses with columns for date, amount, and category.
 - **Pie Chart**: A dynamic D3.js pie chart visualizing the total expenses per category (e.g., Food, Housing, Health, etc.).
-- **LocalStorage Sync**: All expenses are saved to and loaded from `localStorage`, allowing persistence across sessions. The app listens for `storage` events and updates the grid and chart accordingly.
+- **Pluggable Data Storage**: Supports two storage options:
+  - **Local Storage**: Expenses are saved locally in the browser, with real-time updates via the storage event.
+  - **AWS DynamoDB**: Expenses are stored in a remote DynamoDB database via a REST API.
 - **Responsive Design**: The app is fully responsive, leveraging Angular Material and SASS to ensure it looks good on both desktop and mobile devices.
 
 ---
