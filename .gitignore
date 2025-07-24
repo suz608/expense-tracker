@@ -2,3 +2,4 @@ node_modules
 api
 .angular
 src/environments
+.DS_Store

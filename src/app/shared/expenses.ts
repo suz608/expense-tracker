@@ -18,10 +18,14 @@ export class ExpenseService{
 
   // Fetch expenses from the AWS API
   fetchExpensesFromApi() {
-    this.http.get<Expense[]>(this.apiUrl).subscribe({
+    this.http.get<any[]>(`${this.apiUrl}/expenses`).subscribe({
       next: (data) => {
-        // Map the fetched data to ensure it fits the Expense model
-        this.expenses = data;
+        this.expenses = data.map(item => new Expense(
+          item.category,
+          Number(item.amount),
+          item.dateTime,
+          item.expenseId
+        ));
       },
       error: (err) => {
         console.error('Error fetching expenses from API:', err);
@@ -29,13 +33,29 @@ export class ExpenseService{
     });
   }
 
-  // Other methods to manage expenses
+
+  // GET
   getExpenses() {
     return this.expenses;
   }
 
+  // POST 
   addExpense(expense: Expense) {
-    //return this.expenses;
+    const expenseJson = {
+      category: expense.category,
+      amount: String(expense.amount),
+      dateTime: expense.dateTime
+    };
+    return this.http.post( this.apiUrl, expenseJson).subscribe({
+      next: (response) => {
+        console.log('Expense successfully posted:', response);
+        // Optionally update local list
+        this.expenses.push(expense);
+      },
+      error: (error) => {
+        console.error('Error posting expense:', error);
+      }
+    });
   }
-
+  
 }
